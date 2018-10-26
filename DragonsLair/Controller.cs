@@ -91,7 +91,7 @@ namespace DragonsLair
                 isRoundFinished = lastRound.IsMatchesFinished();
             }
 
-            if (isRoundFinished = true)
+            if (isRoundFinished == true)
             {
                 if (lastRound == null)
                 {
