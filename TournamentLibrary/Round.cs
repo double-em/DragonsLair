@@ -47,6 +47,7 @@ namespace TournamentLib
             {
                 winningTeams.Add(matches[i].Winner);
             }
+            winningTeams.Add(FreeRider);
             return winningTeams;
         }
 

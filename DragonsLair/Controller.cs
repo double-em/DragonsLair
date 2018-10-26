@@ -74,9 +74,10 @@ namespace DragonsLair
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
             Tournament t = tournamentRepository.GetTournament(tournamentName);
-            Round lastRound;
+            Round lastRound, newRound;
             bool isRoundFinished;
-            List<Team> teams;
+            List<Team> teams, scrambled;
+            Team oldFreeRider, newFreeRider;
             int numberOfRounds = t.GetNumberOfRounds();
             if (numberOfRounds == 0)
             {
@@ -99,16 +100,60 @@ namespace DragonsLair
                 {
                     teams = lastRound.GetWinningTeams();
 
-                    if (lastRound.FreeRider)
+                    if (lastRound.FreeRider != null)
                     {
-
+                        teams.Add(lastRound.FreeRider);
                     }
+                }
+                if (teams.Count >= 2)
+                {
+                    newRound = new Round();
+                    //Scramble HERE PLS
+                    scrambled = teams;
+
+                    if (scrambled.Count % 2 != 0)
+                    {
+                        if (numberOfRounds > 0)
+                        {
+                            oldFreeRider = lastRound.GetFreeRider();
+                            newFreeRider = scrambled[0];
+
+                        }
+                        else
+                        {
+                            oldFreeRider = null;
+                            newFreeRider = scrambled[0];
+                        }
+                        int x = 0;
+                        while (newFreeRider == oldFreeRider)
+                        {
+                            newFreeRider = scrambled[x];
+                                x++;
+                        }
+                        newRound.SetFreeRider(newFreeRider);
+                        scrambled.Remove(newFreeRider);
+
+                   }
+                    for(int i = 0; i < scrambled.Count; i += 2)
+                    {
+                        Match match = new Match();
+                        match.FirstOpponent = scrambled[i];
+                        match.SecondOpponent = scrambled[i + 1];
+                        newRound.AddMatch(match);
+                    }
+                    t.AddRound(newRound);
+                    //Vis kampe her
+                }
+                else
+                {
+                    throw new Exception("Round is not finished");
                 }
             }
             else
             {
-                throw new Exception("Tournament is finished");
+                throw new Exception("Round not finished");
             }
+
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
