@@ -73,7 +73,7 @@ namespace DragonsLair
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            // Do not implement this method
+            
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
@@ -82,7 +82,7 @@ namespace DragonsLair
         }
 
         public TournamentRepo GetTournamentRepository() {
-            throw new NotImplementedException("Implement this you debil.");
+            return tournamentRepository;
         }
     }
 }
