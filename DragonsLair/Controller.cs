@@ -110,7 +110,7 @@ namespace DragonsLair
                 {
                     newRound = new Round();
                     //Scramble HERE PLS
-                    scrambled = teams;
+                    scrambled = ScrambleTeamsRandomly(teams);
 
                     if (scrambled.Count % 2 != 0)
                     {
@@ -167,10 +167,13 @@ namespace DragonsLair
             return tournamentRepository;
         }
 
-        public Team ScrambleTeamsRandomly(List<Team> teams)
+        public List<Team> ScrambleTeamsRandomly(List<Team> teams)
         {
-            int rnd = rng.Next(teams.Count);
-            return teams[rnd];
+            List<Team> scram = new List<Team>();
+            foreach(Team team in teams) {
+                scram.Add(team);
+            }
+            return scram;
         }
     }
 }
