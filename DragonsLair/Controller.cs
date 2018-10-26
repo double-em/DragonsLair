@@ -80,5 +80,9 @@ namespace DragonsLair
         {
             // Do not implement this method
         }
+
+        public TournamentRepo GetTournamentRepository() {
+            throw new NotImplementedException("Implement this you debil.");
+        }
     }
 }
