@@ -8,6 +8,7 @@ namespace DragonsLair
     public class Controller
     {
         private TournamentRepo tournamentRepository = new TournamentRepo();
+        Random rng = new Random();
 
         public void ShowScore(string tournamentName)
         {
@@ -81,8 +82,15 @@ namespace DragonsLair
             // Do not implement this method
         }
 
-        public TournamentRepo GetTournamentRepository() {
+        public TournamentRepo GetTournamentRepository()
+        {
             return tournamentRepository;
+        }
+
+        public Team ScrambleTeamsRandomly(List<Team> teams)
+        {
+            int rnd = rng.Next(teams.Count);
+            return teams[rnd];
         }
     }
 }
