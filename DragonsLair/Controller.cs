@@ -169,6 +169,7 @@ namespace DragonsLair
 
         public List<Team> ScrambleTeamsRandomly(List<Team> teams)
         {
+            List<Team> scrambledTeams = new List<Team>();
             int length = teams.Count;
             while (length > 1)
             {
@@ -176,10 +177,11 @@ namespace DragonsLair
                 var temp = teams[rnd];
                 teams[rnd] = teams[length - 1];
                 teams[length - 1] = temp;
+                scrambledTeams.Add(teams[length-1]);
                 length--;
             }
 
-            return teams;
+            return scrambledTeams;
         }
     }
 }
