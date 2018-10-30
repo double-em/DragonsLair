@@ -169,11 +169,17 @@ namespace DragonsLair
 
         public List<Team> ScrambleTeamsRandomly(List<Team> teams)
         {
-            List<Team> scram = new List<Team>();
-            foreach(Team team in teams) {
-                scram.Add(team);
+            int length = teams.Count;
+            while (length > 1)
+            {
+                int rnd = rng.Next(length);
+                var temp = teams[rnd];
+                teams[rnd] = teams[length - 1];
+                teams[length - 1] = temp;
+                length--;
             }
-            return scram;
+
+            return teams;
         }
     }
 }
