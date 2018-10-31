@@ -159,7 +159,18 @@ namespace DragonsLair
 
         public void SaveMatch(string tournamentName, int roundNo, string winningTeamName)
         {
-            
+            Tournament t = tournamentRepository.GetTournament(tournamentName);
+            Round r = t.GetRound(roundNo);
+            Match m = r.GetMatch(winningTeamName);
+
+            if (m != null && m.Winner == null)
+            {
+                Team w = t.GetTeam(winningTeamName);
+                m.Winner = w;
+
+                Console.WriteLine("Matched Saved");
+            }
+            else throw new Exception("Failed to save the match");
         }
 
         public TournamentRepo GetTournamentRepository()
