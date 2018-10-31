@@ -25,7 +25,7 @@ namespace TournamentLib
         public Match GetMatch(string teamName1, string teamName2)
         {
             foreach(Match match in matches) {
-                if(match.FirstOpponent.Name.Equals(teamName1) ||match.SecondOpponent.Name.Equals(teamName1)) {
+                if(match.FirstOpponent.Name.Equals(teamName1) || match.SecondOpponent.Name.Equals(teamName1)) {
                     if(match.FirstOpponent.Name.Equals(teamName2) || match.SecondOpponent.Name.Equals(teamName2)) {
                         return match;
                     }
