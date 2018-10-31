@@ -37,6 +37,18 @@ namespace TournamentLib
             throw new System.Exception("Match does not exist");
         }
 
+        public Match GetMatch(string team)
+        {
+            foreach (Match match in matches)
+            {
+                if (match.FirstOpponent.Name.Equals(team) || match.SecondOpponent.Name.Equals(team))
+                {
+                    return match;
+                }
+            }
+            throw new System.Exception("Match does not exist");
+        }
+
         public bool IsMatchesFinished()
         {
             foreach (var item in matches)
