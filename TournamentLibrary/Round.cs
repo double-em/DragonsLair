@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace TournamentLib
 {
@@ -71,6 +72,18 @@ namespace TournamentLib
                 }
             }
             return losingTeams;
+        }
+
+        public Match GetMatch(string team)
+        {
+            foreach(Match match in matches)
+            {
+                if (match.FirstOpponent.Name.Equals(team) || match.SecondOpponent.Name.Equals(team))
+                {
+                    return match;
+                }
+            }
+            throw new Exception("Match does not exist");
         }
     }
 }
