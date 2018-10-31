@@ -17,14 +17,14 @@ namespace TournamentLib {
 
         public Team GetTeam(string teamName)
         {
-            foreach (var item in teams)
+            foreach (Team team in teams)
             {
-                if (item.Name == teamName)
+                if (team.Name.Equals(teamName))
                 {
-                    return item;
+                    return team;
                 }
             }
-            return null;
+            throw new System.Exception("Team does not exist");
         }
 
         public void AddTeam(Team team) {
