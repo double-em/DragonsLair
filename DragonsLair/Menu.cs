@@ -83,7 +83,7 @@ namespace DragonsLair
             Console.Write("Angiv vinderhold: ");
             string winner = Console.ReadLine();
             Console.Clear();
-            control.SaveMatch(tournamentName, roundnr, opponent1, opponent2, winner);
+            control.SaveMatch(tournamentName, roundnr, winner);
         }
     }
 }
