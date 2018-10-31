@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 
 namespace TournamentLib
 {
@@ -25,14 +24,17 @@ namespace TournamentLib
 
         public Match GetMatch(string teamName1, string teamName2)
         {
-            foreach(Match match in matches) {
-                if(match.FirstOpponent.Name.Equals(teamName1) || match.SecondOpponent.Name.Equals(teamName1)) {
-                    if(match.FirstOpponent.Name.Equals(teamName2) || match.SecondOpponent.Name.Equals(teamName2)) {
+            foreach(Match match in matches)
+            {
+                if(match.FirstOpponent.Name.Equals(teamName1) || match.SecondOpponent.Name.Equals(teamName1))
+                {
+                    if(match.FirstOpponent.Name.Equals(teamName2) || match.SecondOpponent.Name.Equals(teamName2))
+                    {
                         return match;
                     }
                 }
             }
-            return null;
+            throw new System.Exception("Match does not exist");
         }
 
         public bool IsMatchesFinished()
@@ -72,18 +74,6 @@ namespace TournamentLib
                 }
             }
             return losingTeams;
-        }
-
-        public Match GetMatch(string team)
-        {
-            foreach(Match match in matches)
-            {
-                if (match.FirstOpponent.Name.Equals(team) || match.SecondOpponent.Name.Equals(team))
-                {
-                    return match;
-                }
-            }
-            throw new Exception("Match does not exist");
         }
     }
 }
