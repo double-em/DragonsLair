@@ -215,5 +215,19 @@ namespace DragonsLair
                 tournamentRepository.CreateTournament(name);
             }
         }
+
+        public void RemoveTournament(string name)
+        {
+            Tournament t = tournamentRepository.GetTournament(name);
+
+            if (t != null)
+            {
+                tournamentRepository.RemoveTournament(t);
+            }
+            else
+            {
+                throw new Exception("Tournament dosen't exist");
+            }
+        }
     }
 }

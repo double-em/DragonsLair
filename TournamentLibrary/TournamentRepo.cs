@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TournamentLib
 {
@@ -28,6 +29,11 @@ namespace TournamentLib
             Tournament tournament = new Tournament(name);
             TournamentList.Add(tournament);
             
+        }
+
+        public void RemoveTournament(Tournament t)
+        {
+            TournamentList.Remove(t);
         }
     }
 }
