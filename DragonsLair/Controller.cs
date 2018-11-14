@@ -72,7 +72,7 @@ namespace DragonsLair
             Console.Clear();
         }
 
-        public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
+        public void ScheduleNewRound(string tournamentName, bool printNewMatches = true, bool scrambleTeams = true)
         {
             Tournament t = tournamentRepository.GetTournament(tournamentName);
             Round lastRound, newRound;
@@ -109,8 +109,9 @@ namespace DragonsLair
                 if (teams.Count >= 2)
                 {
                     newRound = new Round();
-                    //Scramble HERE PLS
-                    scrambled = ScrambleTeamsRandomly(teams);
+                    scrambled = ScrambleTeamsRandomly(teams, scrambleTeams);
+                    
+                    
 
                     if (scrambled.Count % 2 != 0)
                     {
@@ -178,20 +179,28 @@ namespace DragonsLair
             return tournamentRepository;
         }
 
-        public List<Team> ScrambleTeamsRandomly(List<Team> teams)
+        public List<Team> ScrambleTeamsRandomly(List<Team> teams, bool scramble = true)
         {
             List<Team> scrambledTeams = new List<Team>();
-            int length = teams.Count;
-            while (length > 1)
-            {
-                int rnd = rng.Next(length);
-                var temp = teams[rnd];
-                teams[rnd] = teams[length - 1];
-                teams[length - 1] = temp;
-                scrambledTeams.Add(teams[length-1]);
-                length--;
+            if (scramble) { 
+                int length = teams.Count;
+                while (length > 1)
+                {
+                    int rnd = rng.Next(length);
+                    var temp = teams[rnd];
+                    teams[rnd] = teams[length - 1];
+                    teams[length - 1] = temp;
+                    scrambledTeams.Add(teams[length-1]);
+                    length--;
+                }
             }
-
+            else
+            {
+                foreach (Team team in teams)
+                {
+                    scrambledTeams.Add(team);
+                }
+            }
             return scrambledTeams;
         }
     }

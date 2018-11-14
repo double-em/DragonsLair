@@ -22,7 +22,7 @@ namespace ControllerTest {
         public void TestScheduleNewRoundWithEvenNumberOfTeams() {
             Assert.AreEqual(8, currentTournament.GetTeams().Count);
 
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
 
             Assert.AreEqual(1, currentTournament.GetNumberOfRounds());
             Assert.AreEqual(8, currentTournament.GetTeams().Count);
@@ -33,7 +33,7 @@ namespace ControllerTest {
             currentTournament.AddTeam(new Team("The Andals")); // Add the nine'th team
             Assert.AreEqual(9, currentTournament.GetTeams().Count);
 
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
 
             Assert.AreEqual(1, currentTournament.GetNumberOfRounds());
             Assert.AreEqual(9, currentTournament.GetTeams().Count);
@@ -43,7 +43,7 @@ namespace ControllerTest {
         public void TestOddNumberOfTeamsGivesFreeRider()
         {
             currentTournament.AddTeam(new Team("The Andals")); // Add the nine'th team
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
             Assert.AreNotEqual(null, currentTournament.GetRound(0).FreeRider);
         }
 
@@ -51,7 +51,7 @@ namespace ControllerTest {
         public void TestWinningTeamInRound0IsRegistered()
         {
             String winnerName = "The Spartans";
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
             controller.SaveMatch("Vinter Turnering", 0, winnerName);
             Match m = currentTournament.GetRound(0).GetMatch(winnerName);
             Assert.AreEqual(winnerName, m.Winner.Name);
@@ -62,13 +62,13 @@ namespace ControllerTest {
         {
             String winnerName = "The Coans";
 
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
             controller.SaveMatch("Vinter Turnering", 0, "The Spartans");
             controller.SaveMatch("Vinter Turnering", 0, "The Cretans");
             controller.SaveMatch("Vinter Turnering", 0, "The Coans");
             controller.SaveMatch("Vinter Turnering", 0, "The Megareans");
 
-            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.ScheduleNewRound("Vinter Turnering", false, false);
             controller.SaveMatch("Vinter Turnering", 1, winnerName);
 
             Match m = currentTournament.GetRound(1).GetMatch(winnerName);
