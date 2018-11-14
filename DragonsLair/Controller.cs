@@ -226,7 +226,7 @@ namespace DragonsLair
             }
             else
             {
-                throw new Exception("Tournament dosen't exist");
+                throw new Exception("Tournament doesn't exist");
             }
         }
     }
