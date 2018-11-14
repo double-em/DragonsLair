@@ -19,6 +19,7 @@ namespace TournamentLib
         public void CreateTournament(string name)
         {
             Tournament tournament = new Tournament(name);
+            TournamentList.Add(tournament);
             
         }
     }
