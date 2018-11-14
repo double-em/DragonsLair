@@ -203,6 +203,17 @@ namespace DragonsLair
             }
             return scrambledTeams;
         }
-
+        public void CreateTournament(string name)
+        {
+            Tournament t = tournamentRepository.GetTournament(name);
+            if(t != null)
+            {
+                throw new Exception("Tournament already exists");
+            }
+            else
+            {
+                tournamentRepository.CreateTournament(name);
+            }
+        }
     }
 }
