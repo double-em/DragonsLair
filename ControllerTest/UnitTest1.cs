@@ -82,6 +82,14 @@ namespace ControllerTest {
             Assert.AreNotEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
         }
 
+        [TestMethod]
+        public void TestRemoveTournament()
+        {
+            controller.CreateTournament("Test Turnering");
+            controller.RemoveTournament("Test Turnering");
+            Assert.AreEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
+        }
+
     }
 
 }
