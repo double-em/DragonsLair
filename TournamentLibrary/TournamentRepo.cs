@@ -4,6 +4,7 @@ namespace TournamentLib
 {
     public class TournamentRepo
     {
+        List<Tournament> TournamentList = new List<Tournament>();
         private Tournament winterTournament = new Tournament("Vinter Turnering");
 
         public Tournament GetTournament(string name)
@@ -13,6 +14,12 @@ namespace TournamentLib
                 return winterTournament;
             }
             return null;
+        }
+
+        public void CreateTournament(string name)
+        {
+            Tournament tournament = new Tournament(name);
+            
         }
     }
 }
