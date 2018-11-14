@@ -205,6 +205,22 @@ namespace DragonsLair
         }
         public void CreateTournament(string name)
         {
+            bool takeTeams = true;
+            List<Team> teamList = new List<Team>();
+            while (takeTeams)
+            {
+                Console.WriteLine("Indtast holdnavn");
+                string TeamName = Console.ReadLine();
+                if (TeamName.Length > 0)
+                {
+                    teamList.Add(new Team(TeamName));
+                }
+                else
+                {
+                    takeTeams = false;
+                }
+            }
+
             Tournament t = tournamentRepository.GetTournament(name);
             if(t != null)
             {
@@ -212,7 +228,7 @@ namespace DragonsLair
             }
             else
             {
-                tournamentRepository.CreateTournament(name);
+                tournamentRepository.CreateTournament(name, teamList);
             }
         }
 
