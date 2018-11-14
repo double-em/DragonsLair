@@ -75,6 +75,13 @@ namespace ControllerTest {
             Assert.AreEqual(winnerName, m.Winner.Name);
         }
 
+        [TestMethod]
+        public void TestCreateTournament()
+        {
+            controller.CreateTournament("Test Turnering");
+            Assert.AreNotEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
+        }
+
     }
 
 }
