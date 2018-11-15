@@ -26,7 +26,7 @@ namespace DragonsLair
             }
             else
             {
-                Console.WriteLine("Der er ikke oprettede nogen turneringer...");
+                Console.WriteLine("Der er ikke oprettet nogen turneringer...");
                 Console.ReadKey(true);
                 Console.Clear();
                 return false;
