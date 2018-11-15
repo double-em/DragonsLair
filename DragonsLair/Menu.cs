@@ -46,6 +46,8 @@ namespace DragonsLair
             Console.WriteLine("1. Præsenter turneringsstilling");
             Console.WriteLine("2. Planlæg runde i turnering");
             Console.WriteLine("3. Registrér afviklet kamp");
+            Console.WriteLine("4. Skab ny turnering");
+            Console.WriteLine("5. Slet eksisterende turnering");
             Console.WriteLine("");
             Console.WriteLine("0. Exit");
         }
@@ -107,6 +109,13 @@ namespace DragonsLair
                 }
             }
             control.CreateTournament(tournamentName, teamNames);
+        }
+
+        private void DeleteTournament()
+        {
+            Console.WriteLine("Indtast turneringsnavn: ");
+            string name = Console.ReadLine();
+            control.RemoveTournament(name);
         }
     }
 }
