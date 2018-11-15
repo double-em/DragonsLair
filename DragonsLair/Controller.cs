@@ -113,7 +113,7 @@ namespace DragonsLair
                     
                     
 
-                    if (scrambled.Count % 2 != 0)
+                    if ((scrambled.Count % 2) != 0)
                     {
                         if (numberOfRounds > 0)
                         {
@@ -184,7 +184,7 @@ namespace DragonsLair
             List<Team> scrambledTeams = new List<Team>();
             if (scramble) { 
                 int length = teams.Count;
-                while (length > 1)
+                while (length >= 1)
                 {
                     int rnd = rng.Next(length);
                     var temp = teams[rnd];
