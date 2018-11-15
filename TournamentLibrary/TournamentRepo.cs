@@ -5,7 +5,7 @@ namespace TournamentLib
 {
     public class TournamentRepo
     {
-        private List<Tournament> TournamentList = new List<Tournament>();
+        public List<Tournament> TournamentList = new List<Tournament>();
 
         public Tournament GetTournament(string name)
         {

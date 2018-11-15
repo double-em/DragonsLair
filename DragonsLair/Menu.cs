@@ -9,41 +9,88 @@ namespace DragonsLair
         
         public void Show()
         {
-            bool running = true;
-            do
+            if (ShowMenuTournament())
             {
-                ShowMenu();
-                string choice = GetUserChoice();
+                Console.Clear();
+                bool done = ShowMenuTournamentOptions();
+            }
+        }
+
+        private bool ShowMenuTournamentOptions()
+        {
+            bool choiceMade = false;
+            while (!choiceMade)
+            {
+                Console.WriteLine(control.tournamentFocus.Name + "\n");
+                Console.WriteLine("\t 1. Stilling");
+                Console.WriteLine("\t 2. Hold");
+                Console.WriteLine("\t 3. Runde");
+                Console.Write("\nIndtast valg: ");
+                string choice = Console.ReadLine();
+
                 switch (choice)
                 {
-                    case "0":
-                        running = false;
-                        break;
                     case "1":
-                        ShowScore();
+                        control.ShowScore(control.tournamentFocus.Name);
                         break;
                     case "2":
-                        ScheduleNewRound();
+                        CreateTournament();
+                        Console.Clear();
                         break;
                     case "3":
-                        SaveMatch();
-                        break;
-                    case "4":
-                        CreateTournament();
+                        DeleteTournament();
+                        Console.Clear();
                         break;
                     default:
-                        Console.WriteLine("Ugyldigt valg.");
-                        Console.ReadLine();
+                        Console.Write("Ugyldigt valg");
+                        Console.ReadKey(true);
+                        Console.Clear();
                         break;
                 }
-            } while (running);
+            }
+            return choiceMade;
+        }
+
+        private bool ShowMenuTournament()
+        {
+            bool choiceMade = false;
+            while (!choiceMade)
+            {
+                Console.WriteLine("Turneringssystemet over alle systemer\n");
+                Console.WriteLine("\t 1. Vælg Turnering");
+                Console.WriteLine("\t 2. Opret Turnering");
+                Console.WriteLine("\t 3. Fjern Turnering");
+                Console.Write("\nIndtast valg: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        choiceMade = control.ChooseTournament();
+                        break;
+                    case "2":
+                        CreateTournament();
+                        Console.Clear();
+                        break;
+                    case "3":
+                        DeleteTournament();
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Write("Ugyldigt valg");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        break;
+                }
+            }
+            return choiceMade;
         }
 
         private void ShowMenu()
         {
             Console.WriteLine("Dragons Lair");
             Console.WriteLine();
-            Console.WriteLine("1. Præsenter turneringsstilling");
+            Console.WriteLine("1. Præsenter turneringsst");
             Console.WriteLine("2. Planlæg runde i turnering");
             Console.WriteLine("3. Registrér afviklet kamp");
             Console.WriteLine("4. Skab ny turnering");

@@ -8,7 +8,30 @@ namespace DragonsLair
     public class Controller
     {
         private TournamentRepo tournamentRepository = new TournamentRepo();
+        public Tournament tournamentFocus;
         Random rng = new Random();
+
+        public bool ChooseTournament()
+        {
+            if (tournamentRepository.TournamentList.Count() > 0)
+            {
+                for (int i = 0; i < tournamentRepository.TournamentList.Count(); i++)
+                {
+                    Console.WriteLine("\t" + (i + 1) + ". " + tournamentRepository.TournamentList[i].Name);
+                }
+                Console.Write("Vælg turnering: ");
+                string tournamentChoice = Console.ReadLine();
+                tournamentFocus = tournamentRepository.TournamentList[int.Parse(tournamentChoice) - 1];
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Der er ikke oprettede nogen turneringer...");
+                Console.ReadKey(true);
+                Console.Clear();
+                return false;
+            }
+        }
 
         public void ShowScore(string tournamentName)
         {
