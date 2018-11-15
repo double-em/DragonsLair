@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DragonsLair;
 using TournamentLib;
+using System.Collections.Generic;
 
 namespace ControllerTest {
     [TestClass]
@@ -78,14 +79,24 @@ namespace ControllerTest {
         [TestMethod]
         public void TestCreateTournament()
         {
-            controller.CreateTournament("Test Turnering");
+            List<string> teamNames = new List<string>();
+            teamNames.Add("The Spartans");
+            teamNames.Add("The Cretans");
+            teamNames.Add("The Coans");
+
+            controller.CreateTournament("Test Turnering", teamNames);
             Assert.AreNotEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
         }
 
         [TestMethod]
         public void TestRemoveTournament()
         {
-            controller.CreateTournament("Test Turnering");
+            List<string> teamNames = new List<string>();
+            teamNames.Add("The Spartans");
+            teamNames.Add("The Cretans");
+            teamNames.Add("The Coans");
+
+            controller.CreateTournament("Test Turnering", teamNames);
             controller.RemoveTournament("Test Turnering");
             Assert.AreEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
         }

@@ -203,22 +203,15 @@ namespace DragonsLair
             }
             return scrambledTeams;
         }
-        public void CreateTournament(string name)
+
+        public void CreateTournament(string name, List<string> teamNames)
         {
             bool takeTeams = true;
             List<Team> teamList = new List<Team>();
-            while (takeTeams)
+
+            foreach(string teamName in teamNames)
             {
-                Console.WriteLine("Indtast holdnavn");
-                string TeamName = Console.ReadLine();
-                if (TeamName.Length > 0)
-                {
-                    teamList.Add(new Team(TeamName));
-                }
-                else
-                {
-                    takeTeams = false;
-                }
+                teamList.Add(new Team(teamName));
             }
 
             Tournament t = tournamentRepository.GetTournament(name);

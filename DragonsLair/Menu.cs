@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DragonsLair
 {
@@ -26,6 +27,9 @@ namespace DragonsLair
                         break;
                     case "3":
                         SaveMatch();
+                        break;
+                    case "4":
+                        CreateTournament();
                         break;
                     default:
                         Console.WriteLine("Ugyldigt valg.");
@@ -79,6 +83,30 @@ namespace DragonsLair
             string winner = Console.ReadLine();
             Console.Clear();
             control.SaveMatch(tournamentName, round, winner);
+        }
+
+        private void CreateTournament()
+        {
+            string tournamentName;
+            Console.WriteLine("Indtast turneringsnavn: ");
+            tournamentName = Console.ReadLine();
+
+            bool takeTeams = true;
+            List<string> teamNames = new List<string>();
+            while (takeTeams)
+            {
+                Console.Write("Indtast holdnavn: ");
+                string TeamName = Console.ReadLine();
+                if (TeamName.Length > 0)
+                {
+                    teamNames.Add(TeamName);
+                }
+                else
+                {
+                    takeTeams = false;
+                }
+            }
+            control.CreateTournament(tournamentName, teamNames);
         }
     }
 }
