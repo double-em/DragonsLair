@@ -209,7 +209,7 @@ namespace DragonsLair
             List<Team> teamList = new List<Team>();
             while (takeTeams)
             {
-                Console.WriteLine("Indtast holdnavn");
+                Console.Write("Indtast holdnavn: ");
                 string TeamName = Console.ReadLine();
                 if (TeamName.Length > 0)
                 {

@@ -24,16 +24,10 @@ namespace TournamentLib
             return null;
         }
 
-        public void CreateTournament(string name, List<Team> teamList)
+        public void CreateTournament(string name)
         {
             Tournament tournament = new Tournament(name);
-            foreach(Team team in teamList)
-            {
-                tournament.AddTeam(team);
-            }
-            
             TournamentList.Add(tournament);
-            
             
         }
 
