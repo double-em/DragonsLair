@@ -279,7 +279,7 @@ namespace DragonsLair
         private void CreateTournament()
         {
             string tournamentName;
-            Console.WriteLine("Indtast turneringsnavn: ");
+            Console.Write("Indtast turneringsnavn: ");
             tournamentName = Console.ReadLine();
 
             bool takeTeams = true;
