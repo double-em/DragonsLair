@@ -16,6 +16,7 @@ namespace DragonsLair
         {
             if (tournamentRepository.TournamentList.Count() > 0)
             {
+                Console.WriteLine("Turneringsoversigt\n");
                 for (int i = 0; i < tournamentRepository.TournamentList.Count(); i++)
                 {
                     Console.WriteLine("\t" + (i + 1) + ". " + tournamentRepository.TournamentList[i].Name);

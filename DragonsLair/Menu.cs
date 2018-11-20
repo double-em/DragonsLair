@@ -72,7 +72,7 @@ namespace DragonsLair
             Console.Clear();
             Console.WriteLine(control.tournamentFocus.Name + " - " + control.roundFocus.name + " - Matches\n");
             int number = 1;
-            foreach(var match in control.roundFocus.matches)
+            foreach(Match match in control.roundFocus.matches)
             {
                 Console.WriteLine("\t" + number + ". " + match.FirstOpponent + " vs " + match.SecondOpponent);
                 if (match.Winner == null)
@@ -82,6 +82,10 @@ namespace DragonsLair
                 else
                 {
                     Console.WriteLine("\t   Status: Vinder var " + match.Winner.Name);
+                }
+                if(control.roundFocus.FreeRider != null)
+                {
+                    Console.WriteLine("\n\tFree rider: " + control.roundFocus.FreeRider.Name);
                 }
                 number++;
             }
@@ -221,6 +225,7 @@ namespace DragonsLair
                 switch (choice)
                 {
                     case "1":
+                        Console.Clear();
                         choiceMade = control.ChooseTournament();
                         break;
                     case "2":
@@ -292,8 +297,11 @@ namespace DragonsLair
         private void CreateTournament()
         {
             string tournamentName;
+            Console.Clear();
+            Console.WriteLine("Opret turnering\n");
             Console.Write("Indtast turneringsnavn: ");
             tournamentName = Console.ReadLine();
+            Console.WriteLine();
 
             bool takeTeams = true;
             List<string> teamNames = new List<string>();
