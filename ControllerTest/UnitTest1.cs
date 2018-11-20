@@ -106,8 +106,9 @@ namespace ControllerTest {
         public void TestFinishTournament()
         {
             controller.FinishTournament("Vinter Turnering");
-            TournamentRepo Repo = controller.tournamentRepository;
-            Assert.IsNotNull(Repo.FinishedTournaments[Repo.FinishedTournaments.Count -1]);
+            Tournament finished = currentRepo.GetFinishedTournaments()[0];
+            Assert.AreEqual(finished, currentTournament);
+            
             
         }
 
