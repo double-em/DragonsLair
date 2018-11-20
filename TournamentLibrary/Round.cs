@@ -67,7 +67,10 @@ namespace TournamentLib
             List<Team> winningTeams = new List<Team>();
             for (int i = 0; i < matches.Count; i++)
             {
-                winningTeams.Add(matches[i].Winner);
+                if(matches[i].Winner != null)
+                {
+                    winningTeams.Add(matches[i].Winner);
+                }
             }
             return winningTeams;
         }

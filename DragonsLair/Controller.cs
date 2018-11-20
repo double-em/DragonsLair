@@ -53,11 +53,12 @@ namespace DragonsLair
                 winnerTeams.AddRange(winningTeams);
             }
 
-            foreach (var item in winnerTeams)
+            foreach (Team team in winnerTeams)
             {
                 for (int i = 0; i < placement.GetLength(0); i++)
                 {
-                    if (item.Name == placement[i, 0])
+                    string teamName = placement[1, 0];
+                    if (team.Name.Equals(teamName))
                     {
                         int.TryParse(placement[i, 1], out int temp);
                         temp++;
@@ -66,6 +67,7 @@ namespace DragonsLair
                 }
             }
 
+            // Uhm... Wot? o.O
             for (int i = 0; i < placement.GetLength(0); i++)
             {
                 for (int j = 0; j < placement.GetLength(0); j++)
@@ -87,6 +89,7 @@ namespace DragonsLair
                     }
                 }
             }
+            // End wot
 
             for (int i = 0; i < placement.GetLength(0); i++)
             {
