@@ -136,7 +136,14 @@ namespace DragonsLair
                         RoundList();
                         break;
                     case "2":
-                        control.ScheduleNewRound(control.tournamentFocus.Name);
+                        try
+                        {
+                            control.ScheduleNewRound(control.tournamentFocus.Name);
+                        }
+                        catch(Exception e){
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey(true);
+                        }
                         break;
                     default:
                         Console.Write("Ugyldigt valg");
