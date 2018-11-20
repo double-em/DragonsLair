@@ -184,12 +184,12 @@ namespace DragonsLair
                 }
                 else
                 {
-                    throw new Exception("Round is not finished");
+                    throw new Exception("Ikke nok hold til en ny runde");
                 }
             }
             else
             {
-                throw new Exception("Round not finished");
+                throw new Exception("Runden er ikke færdig");
             }
 
         }
