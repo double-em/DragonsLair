@@ -10,16 +10,29 @@ namespace DragonsLair
         
         public void Show()
         {
-            if (ShowMenuTournament())
+            bool runMenu = true;
+            while (runMenu)
             {
-                Console.Clear();
-                ShowMenuTournamentOptions();
+                if (ShowMenuTournament())
+                {
+                    Console.Clear();
+                    ShowMenuTournamentOptions();
+                    Console.Clear();
+                }
             }
+            
         }
 
         void ShowMatchOptions(int matchChoose)
         {
             bool end = false;
+            if(matchChoose > control.roundFocus.matches.Count)
+            {
+                Console.WriteLine("Forkert valg");
+                Console.ReadKey(true);
+                Console.Clear();
+                end = true;
+            }
             while (!end)
             {
                 Console.Clear();

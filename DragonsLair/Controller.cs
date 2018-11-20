@@ -22,9 +22,23 @@ namespace DragonsLair
                 }
                 Console.Write("Vælg turnering: ");
                 string tournamentChoice = Console.ReadLine();
-                tournamentFocus = tournamentRepository.TournamentList[int.Parse(tournamentChoice) - 1];
-                return true;
-            }
+                int tournamentIndex;
+                bool valid = int.TryParse(tournamentChoice, out tournamentIndex);
+                int nTournaments = tournamentRepository.TournamentList.Count;
+                if (valid)
+                {
+                    tournamentIndex -= 1;
+                    if(tournamentIndex < nTournaments && tournamentIndex >= 0)
+                    {
+                        tournamentFocus = tournamentRepository.TournamentList[tournamentIndex];
+                        return true;
+                    }
+                    
+                }
+                Console.WriteLine("Forkert valg...");
+                Console.ReadKey(true);
+                Console.Clear();
+                return false;            }
             else
             {
                 Console.WriteLine("Der er ikke oprettet nogen turneringer...");
