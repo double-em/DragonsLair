@@ -7,8 +7,31 @@ namespace DragonsLair
 {
     public class Controller
     {
-        private readonly TournamentRepo tournamentRepository = new TournamentRepo();
+        private TournamentRepo tournamentRepository = new TournamentRepo();
+        public Tournament tournamentFocus;
         Random rng = new Random();
+
+        public bool ChooseTournament()
+        {
+            if (tournamentRepository.TournamentList.Count() > 0)
+            {
+                for (int i = 0; i < tournamentRepository.TournamentList.Count(); i++)
+                {
+                    Console.WriteLine("\t" + (i + 1) + ". " + tournamentRepository.TournamentList[i].Name);
+                }
+                Console.Write("Vælg turnering: ");
+                string tournamentChoice = Console.ReadLine();
+                tournamentFocus = tournamentRepository.TournamentList[int.Parse(tournamentChoice) - 1];
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Der er ikke oprettet nogen turneringer...");
+                Console.ReadKey(true);
+                Console.Clear();
+                return false;
+            }
+        }
 
         public void ShowScore(string tournamentName)
         {
@@ -237,10 +260,6 @@ namespace DragonsLair
             {
                 throw new Exception("Tournament doesn't exist");
             }
-        }
-        public void FinishTournament(string TournamentName)
-        {
-            tournamentRepository.FinishTournament(TournamentName);
         }
     }
 }
