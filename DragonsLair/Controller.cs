@@ -7,7 +7,7 @@ namespace DragonsLair
 {
     public class Controller
     {
-        private TournamentRepo tournamentRepository = new TournamentRepo();
+        private readonly TournamentRepo tournamentRepository = new TournamentRepo();
         public Tournament tournamentFocus;
         public Round roundFocus;
         Random rng = new Random();
@@ -261,6 +261,11 @@ namespace DragonsLair
             {
                 throw new Exception("Tournament doesn't exist");
             }
+        }
+
+        public void FinishTournament(string TournamentName)
+        {
+            tournamentRepository.FinishTournament(TournamentName);
         }
     }
 }

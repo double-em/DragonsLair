@@ -6,6 +6,7 @@ namespace TournamentLib
     public class TournamentRepo
     {
         public List<Tournament> TournamentList = new List<Tournament>();
+        private List<Tournament> FinishedTournaments = new List<Tournament>();
 
         public Tournament GetTournament(string name)
         {
@@ -17,6 +18,11 @@ namespace TournamentLib
                 }
             }
             return null;
+        }
+
+        public List<Tournament> GetFinishedTournaments()
+        {
+            return FinishedTournaments;
         }
 
         public void CreateTournament(string name, List<Team> teamList)
@@ -35,6 +41,20 @@ namespace TournamentLib
         public void RemoveTournament(Tournament t)
         {
             TournamentList.Remove(t);
+        }
+
+        public void FinishTournament(string tournamentName)
+        {
+            foreach (Tournament tournament in TournamentList)
+            {
+                if (tournament.Name.Equals(tournamentName))
+                {
+                    TournamentList.Remove(tournament);
+                    FinishedTournaments.Add(tournament);
+                    return;
+                }
+            }
+            throw new Exception("Tournament does not exist");
         }
     }
 }

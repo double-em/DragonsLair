@@ -102,6 +102,16 @@ namespace ControllerTest {
             Assert.AreEqual(controller.GetTournamentRepository().GetTournament("Test Turnering"), null);
         }
 
+        [TestMethod]
+        public void TestFinishTournament()
+        {
+            controller.FinishTournament("Vinter Turnering");
+            Tournament finished = currentRepo.GetFinishedTournaments()[0];
+            Assert.AreEqual(finished, currentTournament);
+            
+            
+        }
+
     }
 
 }
