@@ -39,6 +39,7 @@ namespace DragonsLair
             List<Team> winnerTeams = new List<Team>();
             Tournament t = tournamentRepository.GetTournament(tournamentName);
             List<Team> Teams = t.GetTeams();
+            Team freeRider = null;
             string[,] placement = new string[Teams.Count, 2];
             for (int i = 0; i < Teams.Count; i++)
             {
@@ -51,6 +52,10 @@ namespace DragonsLair
                 Round currentRound = t.GetRound(i);
                 List<Team> winningTeams = currentRound.GetWinningTeams();
                 winnerTeams.AddRange(winningTeams);
+                if(currentRound.FreeRider != null)
+                {
+                    freeRider = currentRound.FreeRider;
+                }
             }
 
             foreach (Team team in winnerTeams)
@@ -94,6 +99,10 @@ namespace DragonsLair
             for (int i = 0; i < placement.GetLength(0); i++)
             {
                 Console.WriteLine(placement[i, 0] + " Won " + placement[i, 1] + " times");
+            }
+            if(freeRider != null)
+            {
+                Console.WriteLine("\n" + freeRider.Name + " is getting a free round");
             }
             Console.ReadKey(true);
             Console.Clear();
