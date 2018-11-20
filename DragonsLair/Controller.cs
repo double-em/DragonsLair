@@ -9,6 +9,7 @@ namespace DragonsLair
     {
         private TournamentRepo tournamentRepository = new TournamentRepo();
         public Tournament tournamentFocus;
+        public Round roundFocus;
         Random rng = new Random();
 
         public bool ChooseTournament()

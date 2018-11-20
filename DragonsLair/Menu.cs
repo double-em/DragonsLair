@@ -16,15 +16,105 @@ namespace DragonsLair
             }
         }
 
-        private void ShowMenuTournamentOptions()
+        void ShowMatchOptions(int matchChoose)
         {
             bool end = false;
             while (!end)
             {
-                Console.WriteLine(control.tournamentFocus.Name + "\n");
-                Console.WriteLine("\t 1. Stilling");
-                Console.WriteLine("\t 2. Hold");
-                Console.WriteLine("\t 3. Runde");
+                Console.Clear();
+                Console.WriteLine(control.tournamentFocus.Name + " - " + control.roundFocus.name + " - " + (matchChoose + 1) + " Match\n");
+                var match = control.roundFocus.matches[matchChoose];
+                var FirstOpponent = match.FirstOpponent;
+                var SecondOpponent = match.SecondOpponent;
+                Console.WriteLine("\t" + FirstOpponent.Name);
+                Console.WriteLine("\tvs");
+                Console.WriteLine("\t" + SecondOpponent.Name + "\n");
+                Console.Write("Skriv vinder eller 0 for exit: ");
+                string winner = Console.ReadLine();
+                if (winner == FirstOpponent.Name)
+                {
+                    match.Winner = FirstOpponent;
+                    end = true;
+                }
+                else if (winner == SecondOpponent.Name)
+                {
+                    match.Winner = SecondOpponent;
+                    end = true;
+                }
+                else if (winner == "0")
+                {
+                    end = true;
+                }
+                else
+                {
+                    Console.WriteLine("Dette team er ikke en del af denne kamp...");
+                }
+            }
+            
+        }
+
+        void MatchesView()
+        {
+            Console.Clear();
+            Console.WriteLine(control.tournamentFocus.Name + " - " + control.roundFocus.name + " - Matches\n");
+            int number = 1;
+            foreach(var match in control.roundFocus.matches)
+            {
+                Console.WriteLine("\t" + number + ". " + match.FirstOpponent + " vs " + match.SecondOpponent);
+                if (match.Winner == null)
+                {
+                    Console.WriteLine("\t   Status: Kampen er ikke afholdt");
+                }
+                else
+                {
+                    Console.WriteLine("\t   Status: Vinder var " + match.Winner.Name);
+                }
+                number++;
+            }
+            Console.Write("\nVælg Kamp: ");
+            string matchChoice = Console.ReadLine();
+            int.TryParse(matchChoice, out int choose);
+            choose--;
+            ShowMatchOptions(choose);
+        }
+
+        internal void RoundList()
+        {
+            bool end = false;
+            while (!end)
+            {
+                Console.Clear();
+                Console.WriteLine(control.tournamentFocus.Name + " - Runder\n");
+                for (int i = 0; i < control.tournamentFocus.rounds.Count; i++)
+                {
+                    Console.WriteLine("\t" + (i + 1) + ". " + control.tournamentFocus.rounds[i].name);
+                }
+                Console.Write("\nVælg runde: ");
+                string choice = Console.ReadLine();
+                int.TryParse(choice, out int choose);
+                choose--;
+                if (choose < control.tournamentFocus.rounds.Count)
+                {
+                    control.roundFocus = control.tournamentFocus.rounds[choose];
+                    control.tournamentFocus.rounds[choose].name = (choose + 1) + " Runde";
+                    MatchesView();
+                }
+                else
+                {
+                    Console.WriteLine("Ugyldigt valg.");
+                }
+            }
+        }
+
+        private void ShowMenuRound()
+        {
+            bool end = false;
+            while (!end)
+            {
+                Console.Clear();
+                Console.WriteLine(control.tournamentFocus.Name + " - Runde Aktion\n");
+                Console.WriteLine("\t 1. Se Runde");
+                Console.WriteLine("\t 2. Ny Runde");
                 Console.WriteLine("\n\t 0. Exit");
                 Console.Write("\nIndtast valg: ");
                 string choice = Console.ReadLine();
@@ -35,15 +125,10 @@ namespace DragonsLair
                         end = true;
                         break;
                     case "1":
-                        control.ShowScore(control.tournamentFocus.Name);
+                        RoundList();
                         break;
                     case "2":
-                        ShowMenuTeams();
-                        Console.Clear();
-                        break;
-                    case "3":
-                        DeleteTournament();
-                        Console.Clear();
+                        control.ScheduleNewRound(control.tournamentFocus.Name);
                         break;
                     default:
                         Console.Write("Ugyldigt valg");
@@ -54,16 +139,16 @@ namespace DragonsLair
             }
         }
 
-        private void ShowMenuTeams()
+        private void ShowMenuTournamentOptions()
         {
-            Console.Clear();
             bool end = false;
             while (!end)
             {
-                Console.WriteLine(control.tournamentFocus.Name + " - Hold\n");
-                Console.WriteLine("\t 1. Oversigt");
-                Console.WriteLine("\t 2. Tilføj Hold");
-                Console.WriteLine("\t 3. Slet Team");
+                Console.Clear();
+                Console.WriteLine(control.tournamentFocus.Name + "\n");
+                Console.WriteLine("\t 1. Stilling");
+                Console.WriteLine("\t 2. Runde");
+                Console.WriteLine("\t 3. Færdiggør Turnering");
                 Console.WriteLine("\n\t 0. Exit");
                 Console.Write("\nIndtast valg: ");
                 string choice = Console.ReadLine();
@@ -77,13 +162,13 @@ namespace DragonsLair
                         control.ShowScore(control.tournamentFocus.Name);
                         break;
                     case "2":
-                        ShowMenuTeams();
+                        ShowMenuRound();
                         Console.Clear();
                         break;
                     case "3":
-                        DeleteTournament();
-                        Console.Clear();
+                        //control.FinishTournament(control.tournamentFocus.Name);
                         break;
+
                     default:
                         Console.Write("Ugyldigt valg");
                         Console.ReadKey(true);
