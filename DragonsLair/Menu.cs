@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TournamentLib;
 
 namespace DragonsLair
 {
@@ -23,9 +24,9 @@ namespace DragonsLair
             {
                 Console.Clear();
                 Console.WriteLine(control.tournamentFocus.Name + " - " + control.roundFocus.name + " - " + (matchChoose + 1) + " Match\n");
-                var match = control.roundFocus.matches[matchChoose];
-                var FirstOpponent = match.FirstOpponent;
-                var SecondOpponent = match.SecondOpponent;
+                Match match = control.roundFocus.matches[matchChoose];
+                Team FirstOpponent = match.FirstOpponent;
+                Team SecondOpponent = match.SecondOpponent;
                 Console.WriteLine("\t" + FirstOpponent.Name);
                 Console.WriteLine("\tvs");
                 Console.WriteLine("\t" + SecondOpponent.Name + "\n");
