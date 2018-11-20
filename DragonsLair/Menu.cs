@@ -73,9 +73,12 @@ namespace DragonsLair
             }
             Console.Write("\nVælg Kamp: ");
             string matchChoice = Console.ReadLine();
-            int.TryParse(matchChoice, out int choose);
+            bool isChoice = int.TryParse(matchChoice, out int choose);
             choose--;
-            ShowMatchOptions(choose);
+            if (isChoice)
+            {
+                ShowMatchOptions(choose);
+            }
         }
 
         internal void RoundList()
@@ -91,13 +94,17 @@ namespace DragonsLair
                 }
                 Console.Write("\nVælg runde: ");
                 string choice = Console.ReadLine();
-                int.TryParse(choice, out int choose);
+                bool isChoice = int.TryParse(choice, out int choose);
                 choose--;
-                if (choose < control.tournamentFocus.rounds.Count)
+                if (choose < control.tournamentFocus.rounds.Count && isChoice)
                 {
                     control.roundFocus = control.tournamentFocus.rounds[choose];
                     control.tournamentFocus.rounds[choose].name = (choose + 1) + " Runde";
                     MatchesView();
+                }
+                else if(choice.Length == 0)
+                {
+                    end = true;
                 }
                 else
                 {
