@@ -200,7 +200,8 @@ namespace DragonsLair
                         Console.Clear();
                         break;
                     case "3":
-                        //control.FinishTournament(control.tournamentFocus.Name);
+                        control.FinishTournament(control.tournamentFocus.Name);
+                        end = true;
                         break;
 
                     default:
