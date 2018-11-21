@@ -83,12 +83,14 @@ namespace DragonsLair
                 {
                     Console.WriteLine("\t   Status: Vinder var " + match.Winner.Name);
                 }
-                if(control.roundFocus.FreeRider != null)
-                {
-                    Console.WriteLine("\n\tFree rider: " + control.roundFocus.FreeRider.Name);
-                }
                 number++;
             }
+
+            if (control.roundFocus.FreeRider != null)
+            {
+                Console.WriteLine("\n\tFree rider: " + control.roundFocus.FreeRider.Name);
+            }
+
             Console.Write("\nVælg Kamp: ");
             string matchChoice = Console.ReadLine();
             bool isChoice = int.TryParse(matchChoice, out int choose);

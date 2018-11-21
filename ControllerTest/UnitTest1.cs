@@ -108,8 +108,6 @@ namespace ControllerTest {
             controller.FinishTournament("Vinter Turnering");
             Tournament finished = currentRepo.GetFinishedTournaments()[0];
             Assert.AreEqual(finished, currentTournament);
-            
-            
         }
 
     }
